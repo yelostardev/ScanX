@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080d0a">
+<meta name="description" content="ScanX — 간편한 Windows 보안 도구.">
+<title>ScanX — Windows Security Tool</title>
+<style>
+:root{color-scheme:dark;--bg:#080d0a;--panel:#101813;--line:#263b2d;--green:#62ff91;--muted:#9aafa0;--white:#effff3}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 50% -20%,#183523 0%,var(--bg) 58%);color:var(--white);font-family:Inter,"Segoe UI",system-ui,-apple-system,sans-serif;line-height:1.6}
+a{color:inherit}
+.wrap{width:min(1060px,calc(100% - 36px));margin:auto}
+header{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #203327}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.mark{height:42px;width:42px;border:1px solid #3a9255;background:#102318;border-radius:12px;display:grid;place-items:center;color:var(--green);font-weight:900;font-size:22px;box-shadow:0 0 24px #62ff9110}
+.brandname{font-weight:850;letter-spacing:1.8px;font-size:20px}
+.brand small{display:block;color:#86a18e;letter-spacing:2px;font-size:9px;margin-top:-3px}
+.nav{font-size:12px;color:var(--muted);text-decoration:none}
+.hero{padding:90px 0 74px;text-align:center;position:relative}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:6px 11px;border:1px solid #2b5a3a;background:#0d1d12;color:#a8ffbe;border-radius:99px;font-size:11px;letter-spacing:.6px}
+.pulse{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 10px var(--green)}
+h1{font-size:clamp(39px,8vw,76px);line-height:1.06;letter-spacing:-2.8px;margin:23px 0 18px;font-weight:850}
+h1 span{color:var(--green);text-shadow:0 0 35px #62ff9120}
+.lead{max-width:590px;margin:0 auto;color:#a7b9ac;font-size:clamp(14px,2.5vw,17px)}
+.buttons{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:47px;padding:0 19px;border-radius:10px;text-decoration:none;font-weight:750;font-size:13px;border:1px solid #31563b}
+.btn-primary{background:var(--green);color:#06100a;border-color:var(--green)}
+.btn-secondary{background:#111a14;color:#d9e9dd}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.micro{font-size:11px;color:#7f9686;margin-top:14px}
+.preview{max-width:720px;margin:0 auto;border:1px solid #2c4533;border-radius:17px;background:#0b110d;box-shadow:0 22px 80px #0007;overflow:hidden;text-align:left}
+.windowbar{height:42px;border-bottom:1px solid #203327;display:flex;align-items:center;gap:7px;padding:0 14px;color:#7e9685;font-size:10px}
+.wdot{width:7px;height:7px;border-radius:50%;background:#35513d}
+.windowbody{padding:22px;display:grid;grid-template-columns:1fr 130px;align-items:center;gap:15px}
+.windowbody h2{font-size:21px;margin:4px 0}
+.windowbody p{color:#91a898;font-size:12px;margin:0}
+.safe{color:var(--green);font-size:11px;letter-spacing:1px}
+.bigx{width:100px;height:110px;justify-self:center;color:var(--green);filter:drop-shadow(0 0 16px #62ff9128)}
+section.info{padding:28px 0 74px}
+.section-title{text-align:center;margin-bottom:25px}
+.section-title h2{font-size:26px;letter-spacing:-.8px;margin:0 0 8px}
+.section-title p{color:var(--muted);font-size:13px;margin:0}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.feature{background:linear-gradient(145deg,#111a14,#0c120e);border:1px solid var(--line);border-radius:14px;padding:22px}
+.feature-icon{width:38px;height:38px;display:grid;place-items:center;border-radius:10px;background:#12251a;color:var(--green);font-size:19px;margin-bottom:16px}
+.feature h3{font-size:15px;margin:0 0 7px}
+.feature p{font-size:12px;color:var(--muted);margin:0}
+.download{border:1px solid #31563b;border-radius:17px;background:linear-gradient(120deg,#102117,#0c120e);padding:30px;text-align:center}
+.download h2{font-size:26px;margin:0 0 8px}
+.download p{font-size:13px;color:var(--muted);margin:0 auto 19px;max-width:560px}
+.download .btn{margin:4px}
+.warning{max-width:680px;margin:15px auto 0;color:#a3b5a8;font-size:11px;line-height:1.7}
+footer{border-top:1px solid #203327;padding:23px 0 28px;color:#718779;font-size:11px}
+.footerinner{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(max-width:650px){.hero{padding:65px 0 55px}h1{letter-spacing:-1.7px}.features{grid-template-columns:1fr}.feature{padding:18px}.windowbody{grid-template-columns:1fr 76px;padding:17px}.bigx{width:70px;height:80px}.windowbody h2{font-size:18px}.download{padding:24px 17px}section.info{padding-bottom:52px}}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <a class="brand" href="#" aria-label="ScanX 홈">
+    <span class="mark">X</span>
+    <span><span class="brandname">ScanX</span><small>WINDOWS SECURITY TOOL</small></span>
+  </a>
+  <a class="nav" href="#download">다운로드 안내 ↓</a>
+</header>
+<main>
+  <section class="hero wrap">
+    <span class="pill"><span class="pulse"></span> WINDOWS SECURITY TOOL</span>
+    <h1>당신의 PC를 위한<br><span>간편한 보안 도구.</span></h1>
+    <p class="lead">ScanX는 파일을 살펴보고 검사 기록을 확인할 수 있도록 설계 중인 Windows 보안 도구입니다. 단순하고 명확한 보안 경험을 목표로 합니다.</p>
+    <div class="buttons">
+      <a class="btn btn-primary" href="#download">↓ &nbsp; ScanX 다운로드</a>
+      <a class="btn btn-secondary" href="#features">기능 살펴보기&nbsp; ↘</a>
+    </div>
+    <p class="micro">무료 프로젝트 · Windows용 · 현재 개발 중</p>
+    <div class="preview" style="margin-top:38px">
+      <div class="windowbar"><span class="wdot"></span><span class="wdot"></span><span class="wdot"></span><span style="margin-left:8px">ScanX / Overview</span></div>
+      <div class="windowbody">
+        <div><div class="safe">● &nbsp; SCANX PREVIEW</div><h2>보안 상태를 한눈에.</h2><p>검사 화면과 기록을 한곳에서 확인하세요.</p></div>
+        <svg class="bigx" viewBox="0 0 100 112" fill="none" aria-hidden="true"><path d="M50 5 88 19v29c0 26-16 44-38 58C28 92 12 74 12 48V19L50 5Z" stroke="currentColor" stroke-width="2.5"/><path d="M34 38 66 70M66 38 34 70" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg>
+      </div>
+    </div>
+  </section>
+  <section class="info wrap" id="features">
+    <div class="section-title"><h2>필요한 기능만, 명확하게.</h2><p>ScanX의 개발 방향을 소개합니다.</p></div>
+    <div class="features">
+      <article class="feature"><div class="feature-icon">⌕</div><h3>파일 검사</h3><p>선택한 폴더의 파일을 확인하는 검사 기능을 개발할 예정입니다.</p></article>
+      <article class="feature"><div class="feature-icon">◷</div><h3>검사 기록</h3><p>검사 결과와 기록을 쉽게 확인할 수 있는 화면을 준비하고 있습니다.</p></article>
+      <article class="feature"><div class="feature-icon">◇</div><h3>간결한 인터페이스</h3><p>복잡한 메뉴 대신 필요한 정보를 한눈에 확인하는 디자인을 지향합니다.</p></article>
+    </div>
+  </section>
+  <section class="info wrap" id="download" style="padding-top:0">
+    <div class="download">
+      <h2>ScanX를 만나보세요.</h2>
+      <p>다운로드 파일이 준비되면 이곳에서 배포할 예정입니다. 현재는 웹사이트 디자인 시제품이며, 설치 파일은 아직 공개되지 않았습니다.</p>
+      <!-- 출시 후 아래 href="#"를 실제 GitHub Release 다운로드 주소로 바꾸고 버튼 문구를 수정하세요. -->
+      <a class="btn btn-primary" href="https://github.com/" target="_blank" rel="noopener">GitHub 프로젝트 준비 중 ↗</a>
+      <div class="warning">안내: 현재 ScanX는 개발 중인 프로젝트입니다. 이 페이지에서 실제 설치 파일을 내려받을 수 없으며, 실제 바이러스 탐지 기능이 제공된다는 의미도 아닙니다.</div>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap footerinner"><span>© ScanX · Independent project</span><span>BUILD 0.1 · WEBSITE PREVIEW</span></div></footer>
+</body>
+</html>
